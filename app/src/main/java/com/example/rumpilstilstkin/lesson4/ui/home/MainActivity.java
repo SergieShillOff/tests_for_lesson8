@@ -1,4 +1,4 @@
-package com.example.rumpilstilstkin.lesson4;
+package com.example.rumpilstilstkin.lesson4.ui.home;
 
 
 import android.os.Bundle;
@@ -11,8 +11,9 @@ import android.widget.Toast;
 import com.arellomobile.mvp.MvpAppCompatActivity;
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.bumptech.glide.Glide;
-import com.example.rumpilstilstkin.lesson4.presenters.UserPresenter;
-import com.example.rumpilstilstkin.lesson4.presenters.UserView;
+import com.example.rumpilstilstkin.lesson4.R;
+import com.example.rumpilstilstkin.lesson4.presenters.home.UserPresenter;
+import com.example.rumpilstilstkin.lesson4.presenters.home.UserView;
 
 
 public class MainActivity extends MvpAppCompatActivity implements UserView {

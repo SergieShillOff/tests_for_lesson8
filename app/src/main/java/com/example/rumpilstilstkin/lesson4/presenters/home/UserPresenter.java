@@ -1,4 +1,4 @@
-package com.example.rumpilstilstkin.lesson4.presenters;
+package com.example.rumpilstilstkin.lesson4.presenters.home;
 
 
 import com.arellomobile.mvp.InjectViewState;
