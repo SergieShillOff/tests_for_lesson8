@@ -12,14 +12,19 @@ import com.arellomobile.mvp.MvpAppCompatActivity;
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.bumptech.glide.Glide;
 import com.example.rumpilstilstkin.lesson4.R;
+import com.example.rumpilstilstkin.lesson4.presenters.home.RepsPresenter;
+import com.example.rumpilstilstkin.lesson4.presenters.home.RepsView;
 import com.example.rumpilstilstkin.lesson4.presenters.home.UserPresenter;
 import com.example.rumpilstilstkin.lesson4.presenters.home.UserView;
 
 
-public class MainActivity extends MvpAppCompatActivity implements UserView {
+public class MainActivity extends MvpAppCompatActivity implements UserView, RepsView {
 
     @InjectPresenter
     UserPresenter presenter;
+
+    @InjectPresenter
+    RepsPresenter repsPresenter;
 
     ImageView imageView;
     TextView nameView;

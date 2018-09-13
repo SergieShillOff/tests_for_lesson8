@@ -10,7 +10,7 @@ import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
 
 @InjectViewState
-public class UserPresenter extends MvpPresenter<UserView> {
+public class UserPresenter extends MvpPresenter<UserView> implements Observer<GithubUser>{
 
     @Override
     public void attachView(UserView view) {
@@ -21,28 +21,27 @@ public class UserPresenter extends MvpPresenter<UserView> {
     private void loadDate() {
         getViewState().startLoad();
         NetApiClient.getInstance().getUser("rumpilstilstkin")
-                .subscribe(new Observer<GithubUser>() {
+                .subscribe(this);
+    }
 
-                    @Override
-                    public void onSubscribe(Disposable d) {
-                        //nope
-                    }
+    @Override
+    public void onSubscribe(Disposable d) {
+        //nope
+    }
 
-                    @Override
-                    public void onNext(GithubUser githubUser) {
-                        getViewState().setImage(githubUser.getAvatar());
-                        getViewState().setName(githubUser.getLogin());
-                    }
+    @Override
+    public void onNext(GithubUser githubUser) {
+        getViewState().setImage(githubUser.getAvatar());
+        getViewState().setName(githubUser.getLogin());
+    }
 
-                    @Override
-                    public void onError(Throwable e) {
-                        getViewState().showError(e);
-                    }
+    @Override
+    public void onError(Throwable e) {
+        getViewState().showError(e);
+    }
 
-                    @Override
-                    public void onComplete() {
-                        getViewState().finishLoad();
-                    }
-                });
+    @Override
+    public void onComplete() {
+        getViewState().finishLoad();
     }
 }
