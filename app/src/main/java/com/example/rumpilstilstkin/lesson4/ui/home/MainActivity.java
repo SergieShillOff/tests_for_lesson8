@@ -18,7 +18,8 @@ import com.example.rumpilstilstkin.lesson4.presenters.home.UserPresenter;
 import com.example.rumpilstilstkin.lesson4.presenters.home.UserView;
 
 
-public class MainActivity extends MvpAppCompatActivity implements UserView, RepsView {
+public class MainActivity extends MvpAppCompatActivity
+        implements UserView, RepsView {
 
     @InjectPresenter
     UserPresenter presenter;

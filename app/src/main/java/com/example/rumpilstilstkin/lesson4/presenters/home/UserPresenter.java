@@ -10,7 +10,8 @@ import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
 
 @InjectViewState
-public class UserPresenter extends MvpPresenter<UserView> implements Observer<GithubUser>{
+public class UserPresenter extends MvpPresenter<UserView>
+        implements Observer<GithubUser>{
 
     @Override
     public void attachView(UserView view) {
