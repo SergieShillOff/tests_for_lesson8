@@ -20,7 +20,8 @@ public class RepsPresenter  extends MvpPresenter<RepsView> implements Subscriber
     @Override
     public void attachView(RepsView view) {
         super.attachView(view);
-        loadData();
+        getViewState().startLoad();
+//        loadData();
     }
 
     @Override

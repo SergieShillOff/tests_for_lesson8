@@ -2,11 +2,15 @@ package com.example.rumpilstilstkin.lesson4;
 
 
 import com.example.rumpilstilstkin.lesson4.data.models.GithubUser;
+import com.example.rumpilstilstkin.lesson4.presenters.home.RepsPresenter;
+import com.example.rumpilstilstkin.lesson4.presenters.home.RepsView;
 
 import org.hamcrest.BaseMatcher;
 import org.hamcrest.Description;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import java.io.IOException;
@@ -16,6 +20,7 @@ import java.util.Iterator;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.ArgumentMatchers.anyInt;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.mock;
@@ -27,10 +32,15 @@ import static org.mockito.hamcrest.MockitoHamcrest.argThat;
 @RunWith(MockitoJUnitRunner.class)
 public class MockExampleTest {
 
-   // @Before
-   // public void init() {
-  //      MockitoAnnotations.initMocks(this);
-  //  }
+    private RepsPresenter presenter;
+
+    @Mock
+    private RepsView view;
+
+    @Before
+    public void setUp() {
+        presenter = new RepsPresenter();
+    }
 
     @Test
     public void iterator_will_return_hello_world() {
@@ -46,7 +56,8 @@ public class MockExampleTest {
     @Test
     public void with_arguments() {
         Comparable c = mock(Comparable.class);
-        when(c.compareTo(new GithubUser())).thenReturn(1);
+        //when(c.compareTo(new GithubUser())).thenReturn(1);
+        when(c.compareTo(anyString())).thenReturn(1);
         assertEquals(1, c.compareTo("Test"));
     }
 
@@ -101,6 +112,12 @@ public class MockExampleTest {
         };
         // проверяем, что первый символ массива - это A, и что другие два аргумента равны 0 и 1.
         verify(mock).write(argThat(arrayStartingWithA), eq(0), eq(1));
+    }
+
+    @Test
+    public void testPresenter(){
+        presenter.attachView(view);
+        verify(view).startLoad();
     }
 
 }
