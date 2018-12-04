@@ -1,6 +1,5 @@
 package com.example.rumpilstilstkin.lesson4.data.rest;
 
-
 import com.example.rumpilstilstkin.lesson4.BuildConfig;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -10,7 +9,6 @@ import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
-
 
 public class ServiceGenerator {
 

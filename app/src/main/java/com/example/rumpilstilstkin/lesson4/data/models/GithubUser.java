@@ -1,10 +1,8 @@
 package com.example.rumpilstilstkin.lesson4.data.models;
 
-
 import android.support.annotation.Nullable;
 
 import com.google.gson.annotations.SerializedName;
-
 
 public class GithubUser {
     private String login;
