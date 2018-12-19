@@ -1,6 +1,5 @@
 package com.example.rumpilstilstkin.lesson4.presenters.home;
 
-
 import android.util.Log;
 
 import com.arellomobile.mvp.InjectViewState;
@@ -13,9 +12,8 @@ import org.reactivestreams.Subscription;
 
 import java.util.List;
 
-
 @InjectViewState
-public class RepsPresenter  extends MvpPresenter<RepsView> implements Subscriber<List<RepsModel>> {
+public class RepsPresenter extends MvpPresenter<RepsView> implements Subscriber<List<RepsModel>> {
 
     @Override
     public void attachView(RepsView view) {
@@ -45,9 +43,8 @@ public class RepsPresenter  extends MvpPresenter<RepsView> implements Subscriber
         getViewState().finishLoad();
     }
 
-    private void loadData(){
+    private void loadData() {
         getViewState().startLoad();
-
         NetApiClient.getInstance().getReps().subscribe(this);
     }
 }

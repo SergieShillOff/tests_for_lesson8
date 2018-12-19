@@ -1,9 +1,7 @@
 package com.example.rumpilstilstkin.lesson4.ui.home;
 
-
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -18,7 +16,6 @@ import com.example.rumpilstilstkin.lesson4.presenters.home.RepsView;
 import com.example.rumpilstilstkin.lesson4.presenters.home.UserPresenter;
 import com.example.rumpilstilstkin.lesson4.presenters.home.UserView;
 
-
 public class MainActivity extends MvpAppCompatActivity
         implements UserView, RepsView {
 
@@ -28,27 +25,26 @@ public class MainActivity extends MvpAppCompatActivity
     @InjectPresenter
     RepsPresenter repsPresenter;
 
-    ImageView imageView;
-    TextView nameView;
-    public ProgressBar progress;
-    View content;
-    public Button button;
+    @BindView(R.id.avatar)  ImageView imageView;
+    @BindView(R.id.username) TextView nameView;
+    @BindView(R.id.loadingView) ProgressBar progress;
+    @BindView(R.id.contentView) View content;
+    @BindView(R.id.button) public Button button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        imageView = findViewById(R.id.avatar);
-        nameView = findViewById(R.id.username);
-        progress = findViewById(R.id.loadingView);
-        content = findViewById(R.id.contentView);
-        button = findViewById(R.id.button);
-        button.setOnClickListener(v -> presenter.loadDate());
+        ButterKnife.bind(this);
     }
 
     @Override
     public void setImage(String imageUrl) {
-        Glide.with(this)
+      /*  Glide.with(this)
+                .load(imageUrl)
+                .into(imageView);*/
+
+        Picasso.get()
                 .load(imageUrl)
                 .into(imageView);
     }
