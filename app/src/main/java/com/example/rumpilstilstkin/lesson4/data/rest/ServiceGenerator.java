@@ -21,12 +21,15 @@ public class ServiceGenerator {
                 .baseUrl("https://api.github.com")
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .client(getClient()).build().create(serviceClass);
+                .client(getClient())
+                .build()
+                .create(serviceClass);
     }
 
     private OkHttpClient getClient() {
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
-        interceptor.setLevel((BuildConfig.DEBUG) ? HttpLoggingInterceptor.Level.BODY : HttpLoggingInterceptor.Level.NONE);
+        interceptor.setLevel((BuildConfig.DEBUG) ?
+                             HttpLoggingInterceptor.Level.BODY : HttpLoggingInterceptor.Level.NONE);
 
         return new OkHttpClient.Builder().addInterceptor(interceptor).build();
     }

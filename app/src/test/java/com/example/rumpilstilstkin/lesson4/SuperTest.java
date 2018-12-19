@@ -1,12 +1,9 @@
 package com.example.rumpilstilstkin.lesson4;
 
-import com.example.rumpilstilstkin.lesson4.presenters.home.RepsPresenter;
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import static junit.framework.Assert.assertTrue;
 import static org.junit.Assert.assertEquals;
 
 public class SuperTest {
@@ -29,15 +26,18 @@ public class SuperTest {
     }
 
     @Test
-    public void testStringWhenCountZero(){
-        String str = testObject.someWithString(0);
-        assertTrue(str.isEmpty());
+    public void testMinForStringTestEx(){
+        testObject.someWithString(-1);
     }
 
     @Test
-    public void testStringWhenCountMoreThenZero(){
-        String str = testObject.someWithString(3);
-        assertEquals("ooo", str);
+    public void testMinForStringTest(){
+        assertEquals("ooo", testObject.someWithString(3));
+    }
+
+    @Test
+    public void testMinForStringTestEmpty(){
+        assertEquals("", testObject.someWithString(0));
     }
 
     @After

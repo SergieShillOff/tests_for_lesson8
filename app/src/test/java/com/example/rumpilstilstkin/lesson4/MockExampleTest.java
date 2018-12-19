@@ -7,6 +7,7 @@ import com.example.rumpilstilstkin.lesson4.presenters.home.RepsView;
 
 import org.hamcrest.BaseMatcher;
 import org.hamcrest.Description;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -20,7 +21,6 @@ import java.util.Iterator;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.ArgumentMatchers.anyInt;
-import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.mock;
@@ -34,12 +34,16 @@ public class MockExampleTest {
 
     private RepsPresenter presenter;
 
-    @Mock
-    private RepsView view;
+    @Mock private RepsView view;
 
     @Before
     public void setUp() {
         presenter = new RepsPresenter();
+    }
+
+    @After
+    public void finish(){
+        System.out.println("finish");
     }
 
     @Test
@@ -55,10 +59,11 @@ public class MockExampleTest {
 
     @Test
     public void with_arguments() {
-        Comparable c = mock(Comparable.class);
-        //when(c.compareTo(new GithubUser())).thenReturn(1);
-        when(c.compareTo(anyString())).thenReturn(1);
-        assertEquals(1, c.compareTo("Test"));
+        Comparable<String> c = mock(Comparable.class);
+        GithubUser user = new GithubUser();
+        when(c.compareTo(user.getLogin())).thenReturn(1);
+        //when(c.compareTo(anyString())).thenReturn(1);
+        assertEquals(1, c.compareTo(new GithubUser().getLogin()));
     }
 
     @Test

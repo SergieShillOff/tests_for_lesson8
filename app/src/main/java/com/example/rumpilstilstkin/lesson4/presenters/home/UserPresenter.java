@@ -19,7 +19,7 @@ public class UserPresenter extends MvpPresenter<UserView>
         loadDate();
     }
 
-    private void loadDate() {
+    public void loadDate() {
         getViewState().startLoad();
         NetApiClient.getInstance().getUser("rumpilstilstkin")
                 .subscribe(this);

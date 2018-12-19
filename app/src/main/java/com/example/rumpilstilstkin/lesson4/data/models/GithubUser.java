@@ -8,6 +8,7 @@ import com.google.gson.annotations.SerializedName;
 
 public class GithubUser {
     private String login;
+
     @SerializedName("avatar_url")
     private String avatar;
 

@@ -3,6 +3,7 @@ package com.example.rumpilstilstkin.lesson4.ui.home;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -29,8 +30,9 @@ public class MainActivity extends MvpAppCompatActivity
 
     ImageView imageView;
     TextView nameView;
-    ProgressBar progress;
+    public ProgressBar progress;
     View content;
+    public Button button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +42,8 @@ public class MainActivity extends MvpAppCompatActivity
         nameView = findViewById(R.id.username);
         progress = findViewById(R.id.loadingView);
         content = findViewById(R.id.contentView);
+        button = findViewById(R.id.button);
+        button.setOnClickListener(v -> presenter.loadDate());
     }
 
     @Override
