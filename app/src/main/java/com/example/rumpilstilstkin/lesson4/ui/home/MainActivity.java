@@ -1,7 +1,9 @@
 package com.example.rumpilstilstkin.lesson4.ui.home;
 
+
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -9,12 +11,16 @@ import android.widget.Toast;
 
 import com.arellomobile.mvp.MvpAppCompatActivity;
 import com.arellomobile.mvp.presenter.InjectPresenter;
-import com.bumptech.glide.Glide;
 import com.example.rumpilstilstkin.lesson4.R;
 import com.example.rumpilstilstkin.lesson4.presenters.home.RepsPresenter;
 import com.example.rumpilstilstkin.lesson4.presenters.home.RepsView;
 import com.example.rumpilstilstkin.lesson4.presenters.home.UserPresenter;
 import com.example.rumpilstilstkin.lesson4.presenters.home.UserView;
+import com.squareup.picasso.Picasso;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 
 public class MainActivity extends MvpAppCompatActivity
         implements UserView, RepsView {
