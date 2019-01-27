@@ -1,26 +1,14 @@
 package com.example.rumpilstilstkin.lesson4.presenters.home;
 
 
-import android.util.Log;
-
 import com.arellomobile.mvp.InjectViewState;
 import com.arellomobile.mvp.MvpPresenter;
 import com.example.rumpilstilstkin.lesson4.data.models.GithubUser;
 import com.example.rumpilstilstkin.lesson4.data.rest.NetApiClient;
 
-import java.io.IOException;
-
-import io.reactivex.Observable;
-import io.reactivex.ObservableEmitter;
-import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.Observer;
-import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
-import io.reactivex.observers.DisposableObserver;
-import io.reactivex.schedulers.Schedulers;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
+
 
 @InjectViewState
 public class UserPresenter extends MvpPresenter<UserView>
@@ -33,7 +21,7 @@ public class UserPresenter extends MvpPresenter<UserView>
     }
 
     public void loadDate() {
-        getViewState().startLoad();
+        getViewState().showLoading();
         NetApiClient.getInstance().getUser("rumpilstilstkin")
                 .subscribe(this);
     }
@@ -45,8 +33,8 @@ public class UserPresenter extends MvpPresenter<UserView>
 
     @Override
     public void onNext(GithubUser githubUser) {
-        getViewState().setImage(githubUser.getAvatar());
-        getViewState().setName(githubUser.getLogin());
+        getViewState().showImage(githubUser.getAvatar());
+        getViewState().showName(githubUser.getLogin());
     }
 
     @Override
@@ -56,6 +44,6 @@ public class UserPresenter extends MvpPresenter<UserView>
 
     @Override
     public void onComplete() {
-        getViewState().finishLoad();
+        getViewState().hideLoading();
     }
 }

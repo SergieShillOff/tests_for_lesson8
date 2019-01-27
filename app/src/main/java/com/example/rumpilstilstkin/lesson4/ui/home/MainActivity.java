@@ -3,7 +3,6 @@ package com.example.rumpilstilstkin.lesson4.ui.home;
 
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -20,6 +19,7 @@ import com.squareup.picasso.Picasso;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 
 public class MainActivity extends MvpAppCompatActivity
@@ -35,7 +35,11 @@ public class MainActivity extends MvpAppCompatActivity
     @BindView(R.id.username) TextView nameView;
     @BindView(R.id.loadingView) ProgressBar progress;
     @BindView(R.id.contentView) View content;
-    @BindView(R.id.button) public Button button;
+
+    @OnClick(R.id.button)
+    public void submit(View view) {
+        presenter.loadDate();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +49,7 @@ public class MainActivity extends MvpAppCompatActivity
     }
 
     @Override
-    public void setImage(String imageUrl) {
+    public void showImage(String imageUrl) {
       /*  Glide.with(this)
                 .load(imageUrl)
                 .into(imageView);*/
@@ -56,7 +60,7 @@ public class MainActivity extends MvpAppCompatActivity
     }
 
     @Override
-    public void setName(String name) {
+    public void showName(String name) {
         nameView.setText(name);
     }
 
@@ -68,14 +72,23 @@ public class MainActivity extends MvpAppCompatActivity
     }
 
     @Override
-    public void startLoad() {
+    public void showLoading() {
         progress.setVisibility(View.VISIBLE);
         content.setVisibility(View.GONE);
     }
 
     @Override
-    public void finishLoad() {
+    public void hideLoading() {
         progress.setVisibility(View.GONE);
         content.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void finishLoad() {
+    }
+
+    @Override
+    public void startLoad() {
+
     }
 }

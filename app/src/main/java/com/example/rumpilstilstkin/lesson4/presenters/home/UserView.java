@@ -3,13 +3,13 @@ package com.example.rumpilstilstkin.lesson4.presenters.home;
 import com.arellomobile.mvp.MvpView;
 
 public interface UserView extends MvpView {
-    void setName(String name);
+    void showName(String name);
 
-    void setImage(String imageUrl);
+    void showImage(String imageUrl);
 
     void showError(Throwable e);
 
-    void startLoad();
+    void showLoading();
 
-    void finishLoad();
+    void hideLoading();
 }
