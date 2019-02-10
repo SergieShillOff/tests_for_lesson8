@@ -26,13 +26,18 @@ public class SuperTest {
     }
 
     @Test
+    public void testNumberFunWhenNull(){
+        assertEquals(-1, testObject.someWithNumber(null));
+    }
+
+    @Test
     public void testMinForStringTestEx(){
         testObject.someWithString(-1);
     }
 
     @Test
     public void testMinForStringTest(){
-        assertEquals("ooo", testObject.someWithString(3));
+        assertEquals("ooooooo", testObject.someWithString(7));
     }
 
     @Test

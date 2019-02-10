@@ -4,7 +4,11 @@ package com.example.rumpilstilstkin.lesson4;
 public class MegaClassForTest {
 
     public int someWithNumber(String token){
-        return token.indexOf("o") + 1;
+        if(token == null){
+            return -1;
+        }else {
+            return token.indexOf("o");
+        }
     }
 
     public String someWithString(int number){
@@ -13,5 +17,15 @@ public class MegaClassForTest {
             t += "o";
         }
         return t;
+    }
+
+    public void somwFunk(int k){
+        switch(k){
+            case 1: break;
+            case 2: break;
+            case 3: break;
+            case 4: break;
+            case 5: break;
+        }
     }
 }

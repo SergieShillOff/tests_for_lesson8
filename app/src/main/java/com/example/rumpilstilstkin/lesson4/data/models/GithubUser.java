@@ -5,7 +5,7 @@ import android.support.annotation.Nullable;
 import com.google.gson.annotations.SerializedName;
 
 public class GithubUser {
-    private String login;
+    private String login = "";
 
     @SerializedName("avatar_url")
     private String avatar;

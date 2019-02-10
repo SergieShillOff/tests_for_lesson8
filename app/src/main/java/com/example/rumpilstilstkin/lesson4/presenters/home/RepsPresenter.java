@@ -1,11 +1,9 @@
 package com.example.rumpilstilstkin.lesson4.presenters.home;
 
-import android.util.Log;
-
 import com.arellomobile.mvp.InjectViewState;
 import com.arellomobile.mvp.MvpPresenter;
 import com.example.rumpilstilstkin.lesson4.data.models.RepsModel;
-import com.example.rumpilstilstkin.lesson4.data.rest.NetApiClient;
+import com.example.rumpilstilstkin.lesson4.data.rest.NetApiClientInterface;
 
 import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
@@ -14,12 +12,15 @@ import java.util.List;
 
 @InjectViewState
 public class RepsPresenter extends MvpPresenter<RepsView> implements Subscriber<List<RepsModel>> {
-
+    private NetApiClientInterface client;
     @Override
     public void attachView(RepsView view) {
         super.attachView(view);
-        getViewState().startLoad();
         loadData();
+    }
+
+    public void setNetApiClient(NetApiClientInterface client){
+        this.client = client;
     }
 
     @Override
@@ -29,7 +30,7 @@ public class RepsPresenter extends MvpPresenter<RepsView> implements Subscriber<
 
     @Override
     public void onNext(List<RepsModel> data) {
-        Log.d("Dto", "size = " + data.size());
+       // Log.d("Dto", "size = " + data.size());
     }
 
     @Override
@@ -45,6 +46,6 @@ public class RepsPresenter extends MvpPresenter<RepsView> implements Subscriber<
 
     private void loadData() {
         getViewState().startLoad();
-        NetApiClient.getInstance().getReps().subscribe(this);
+        client.getReps().subscribe(this);
     }
 }

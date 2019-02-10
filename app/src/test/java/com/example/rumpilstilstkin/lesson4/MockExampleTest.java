@@ -2,6 +2,8 @@ package com.example.rumpilstilstkin.lesson4;
 
 
 import com.example.rumpilstilstkin.lesson4.data.models.GithubUser;
+import com.example.rumpilstilstkin.lesson4.data.models.RepsModel;
+import com.example.rumpilstilstkin.lesson4.data.rest.NetApiClientInterface;
 import com.example.rumpilstilstkin.lesson4.presenters.home.RepsPresenter;
 import com.example.rumpilstilstkin.lesson4.presenters.home.RepsView;
 
@@ -17,10 +19,15 @@ import org.mockito.junit.MockitoJUnitRunner;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
+
+import io.reactivex.Flowable;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.ArgumentMatchers.anyInt;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.mock;
@@ -36,9 +43,12 @@ public class MockExampleTest {
 
     @Mock private RepsView view;
 
+    @Mock private NetApiClientInterface client;
+
     @Before
     public void setUp() {
         presenter = new RepsPresenter();
+        presenter.setNetApiClient(client);
     }
 
     @After
@@ -61,9 +71,9 @@ public class MockExampleTest {
     public void with_arguments() {
         Comparable<String> c = mock(Comparable.class);
         GithubUser user = new GithubUser();
-        when(c.compareTo(user.getLogin())).thenReturn(1);
-        //when(c.compareTo(anyString())).thenReturn(1);
-        assertEquals(1, c.compareTo(new GithubUser().getLogin()));
+        //when(c.compareTo(user.getLogin())).thenReturn(1);
+        when(c.compareTo(anyString())).thenReturn(1);
+        assertEquals(1, c.compareTo(user.getLogin()));
     }
 
     @Test
@@ -121,8 +131,14 @@ public class MockExampleTest {
 
     @Test
     public void testPresenter(){
+        RepsModel model = new RepsModel();
+        List<RepsModel> list = new ArrayList<>();
+        list.add(model);
+        when(client.getReps()).thenReturn(Flowable.just(list));
+
         presenter.attachView(view);
         verify(view).startLoad();
+        verify(view).finishLoad();
     }
 
 }
