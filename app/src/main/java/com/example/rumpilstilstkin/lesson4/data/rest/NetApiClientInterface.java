@@ -12,6 +12,5 @@ import io.reactivex.Observable;
 
 public interface NetApiClientInterface {
     Observable<GithubUser> getUser(String user);
-
     Flowable<List<RepsModel>> getReps();
 }

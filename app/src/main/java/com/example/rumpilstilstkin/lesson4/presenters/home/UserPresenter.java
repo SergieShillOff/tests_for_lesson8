@@ -39,6 +39,7 @@ public class UserPresenter extends MvpPresenter<UserView>
 
     @Override
     public void onError(Throwable e) {
+        getViewState().hideLoading();
         getViewState().showError(e);
     }
 

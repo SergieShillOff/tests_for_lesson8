@@ -10,7 +10,10 @@ import android.widget.Toast;
 
 import com.arellomobile.mvp.MvpAppCompatActivity;
 import com.arellomobile.mvp.presenter.InjectPresenter;
+import com.arellomobile.mvp.presenter.PresenterType;
+import com.arellomobile.mvp.presenter.ProvidePresenter;
 import com.example.rumpilstilstkin.lesson4.R;
+import com.example.rumpilstilstkin.lesson4.data.rest.NetApiClient;
 import com.example.rumpilstilstkin.lesson4.presenters.home.RepsPresenter;
 import com.example.rumpilstilstkin.lesson4.presenters.home.RepsView;
 import com.example.rumpilstilstkin.lesson4.presenters.home.UserPresenter;
@@ -28,10 +31,15 @@ public class MainActivity extends MvpAppCompatActivity
     @InjectPresenter
     UserPresenter presenter;
 
-    @InjectPresenter
+    @InjectPresenter(type = PresenterType.LOCAL)
     RepsPresenter repsPresenter;
 
-    @BindView(R.id.avatar)  ImageView imageView;
+    @ProvidePresenter(type = PresenterType.LOCAL)
+    RepsPresenter providePresenter() {
+        return new RepsPresenter(NetApiClient.getInstance());
+    }
+
+    @BindView(R.id.avatar) ImageView imageView;
     @BindView(R.id.username) TextView nameView;
     @BindView(R.id.loadingView) ProgressBar progress;
     @BindView(R.id.contentView) View content;
@@ -67,8 +75,6 @@ public class MainActivity extends MvpAppCompatActivity
     @Override
     public void showError(Throwable e) {
         Toast.makeText(this, e.toString(), Toast.LENGTH_SHORT).show();
-        progress.setVisibility(View.GONE);
-        content.setVisibility(View.GONE);
     }
 
     @Override
@@ -81,14 +87,5 @@ public class MainActivity extends MvpAppCompatActivity
     public void hideLoading() {
         progress.setVisibility(View.GONE);
         content.setVisibility(View.VISIBLE);
-    }
-
-    @Override
-    public void finishLoad() {
-    }
-
-    @Override
-    public void startLoad() {
-
     }
 }

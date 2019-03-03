@@ -6,7 +6,7 @@ public interface RepsView extends MvpView {
 
     void showError(Throwable e);
 
-    void startLoad();
+    void showLoading();
 
-    void finishLoad();
+    void hideLoading();
 }

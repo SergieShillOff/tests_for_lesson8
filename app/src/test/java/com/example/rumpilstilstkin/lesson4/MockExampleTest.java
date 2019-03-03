@@ -47,8 +47,7 @@ public class MockExampleTest {
 
     @Before
     public void setUp() {
-        presenter = new RepsPresenter();
-        presenter.setNetApiClient(client);
+        presenter = new RepsPresenter(client);
     }
 
     @After
@@ -137,8 +136,8 @@ public class MockExampleTest {
         when(client.getReps()).thenReturn(Flowable.just(list));
 
         presenter.attachView(view);
-        verify(view).startLoad();
-        verify(view).finishLoad();
+        verify(view).showLoading();
+        verify(view).hideLoading();
     }
 
 }
