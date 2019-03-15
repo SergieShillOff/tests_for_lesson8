@@ -10,12 +10,7 @@ import android.widget.Toast;
 
 import com.arellomobile.mvp.MvpAppCompatActivity;
 import com.arellomobile.mvp.presenter.InjectPresenter;
-import com.arellomobile.mvp.presenter.PresenterType;
-import com.arellomobile.mvp.presenter.ProvidePresenter;
 import com.example.rumpilstilstkin.lesson4.R;
-import com.example.rumpilstilstkin.lesson4.data.rest.NetApiClient;
-import com.example.rumpilstilstkin.lesson4.presenters.home.RepsPresenter;
-import com.example.rumpilstilstkin.lesson4.presenters.home.RepsView;
 import com.example.rumpilstilstkin.lesson4.presenters.home.UserPresenter;
 import com.example.rumpilstilstkin.lesson4.presenters.home.UserView;
 import com.squareup.picasso.Picasso;
@@ -26,18 +21,10 @@ import butterknife.OnClick;
 
 
 public class MainActivity extends MvpAppCompatActivity
-        implements UserView, RepsView {
+        implements UserView {
 
     @InjectPresenter
     UserPresenter presenter;
-
-    @InjectPresenter(type = PresenterType.LOCAL)
-    RepsPresenter repsPresenter;
-
-    @ProvidePresenter(type = PresenterType.LOCAL)
-    RepsPresenter providePresenter() {
-        return new RepsPresenter(NetApiClient.getInstance());
-    }
 
     @BindView(R.id.avatar) ImageView imageView;
     @BindView(R.id.username) TextView nameView;
