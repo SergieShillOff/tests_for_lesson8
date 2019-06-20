@@ -35,7 +35,7 @@ public class MainActivity extends MvpAppCompatActivity
     RepsPresenter repsPresenter;
 
     @ProvidePresenter(type = PresenterType.LOCAL)
-    RepsPresenter providePresenter() {
+    public RepsPresenter providePresenter() {
         return new RepsPresenter(NetApiClient.getInstance());
     }
 
@@ -88,4 +88,5 @@ public class MainActivity extends MvpAppCompatActivity
         progress.setVisibility(View.GONE);
         content.setVisibility(View.VISIBLE);
     }
+
 }

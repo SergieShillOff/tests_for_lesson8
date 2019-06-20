@@ -140,4 +140,26 @@ public class MockExampleTest {
         verify(view).hideLoading();
     }
 
+
+    @Test
+    public void testPresenterWithEmptyList(){
+        List<RepsModel> list = new ArrayList<>();
+        when(client.getReps()).thenReturn(Flowable.just(list));
+
+        presenter.attachView(view);
+        verify(view).showLoading();
+        verify(view).hideLoading();
+    }
+
+    @Test
+    public void testPresenterError(){
+        Throwable e = new Throwable();
+
+        when(client.getReps()).thenReturn(Flowable.error(e));
+
+        presenter.attachView(view);
+        verify(view).showError(e);
+        verify(view).hideLoading();
+    }
+
 }
