@@ -34,7 +34,7 @@ public class RepsPresenter extends MvpPresenter<RepsView> implements Subscriber<
 
     @Override
     public void onNext(List<RepsModel> data) {
-        Log.d("Dto", "size = " + data.size());
+        System.out.println("size = " + data.size());
     }
 
     @Override
